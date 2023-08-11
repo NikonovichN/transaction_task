@@ -16,6 +16,10 @@ class DiagramTransactions extends StatelessWidget {
           child: state.maybeMap(
             orElse: () => const Text('Nothing to show!'),
             dataState: (state) {
+              if (state.transactions.isEmpty) {
+                return const Text('Nothing to show!');
+              }
+
               // TODO: to think about move this logic to bloc
               // and improve work with types
               Map<TransactionType, List<double>> valueByTypes = {
