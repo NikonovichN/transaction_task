@@ -12,8 +12,4 @@ final routers = [
     path: '/$listTransactionsScreen',
     builder: (context, state) => const ListTransactionsScreen(),
   ),
-  GoRoute(
-    path: '/$diagramTransactionsScreen',
-    builder: (context, state) => const DiagramTransactionsScreen(),
-  ),
 ];
