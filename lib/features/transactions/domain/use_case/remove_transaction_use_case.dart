@@ -6,9 +6,9 @@ class RemoveTransactionUseCase
     implements ObservableUseCase<TransactionsEntity, int> {
   final TransactionsRepository _transactionsRepository;
 
-  RemoveTransactionUseCase({
-    required TransactionsRepository transactionsRepository,
-  }) : _transactionsRepository = transactionsRepository;
+  RemoveTransactionUseCase(
+    TransactionsRepository transactionsRepository,
+  ) : _transactionsRepository = transactionsRepository;
 
   @override
   Stream<TransactionsEntity> call(int id) {

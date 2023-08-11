@@ -5,9 +5,9 @@ import '../repository/transactions_repository.dart';
 class InitDataBaseUseCase implements UseCase {
   final TransactionsRepository _transactionsRepository;
 
-  InitDataBaseUseCase({
-    required TransactionsRepository transactionsRepository,
-  }) : _transactionsRepository = transactionsRepository;
+  InitDataBaseUseCase(
+    TransactionsRepository transactionsRepository,
+  ) : _transactionsRepository = transactionsRepository;
 
   @override
   Stream call() {

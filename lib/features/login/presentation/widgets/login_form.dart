@@ -10,8 +10,8 @@ import '../../domain/use_case/login_use_case.dart';
 class LoginForm extends StatelessWidget {
   LoginForm({super.key});
 
-  final _loginHint = 'Enter username';
-  final _passwordHint = 'Enter password';
+  static const _loginHint = 'Enter username';
+  static const _passwordHint = 'Enter password';
 
   String _loginError(String error) => 'Error login: \n $error \n Try again!';
 
@@ -26,8 +26,8 @@ class LoginForm extends StatelessWidget {
         children: [
           TextFormField(
             controller: _loginController,
-            decoration: InputDecoration(
-              border: const OutlineInputBorder(),
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
               hintText: _loginHint,
             ),
           ),
@@ -35,8 +35,8 @@ class LoginForm extends StatelessWidget {
           TextFormField(
             controller: _passwordController,
             obscureText: true,
-            decoration: InputDecoration(
-              border: const OutlineInputBorder(),
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
               hintText: _passwordHint,
             ),
           ),

@@ -5,9 +5,9 @@ import '../repository/transactions_repository.dart';
 class GetTransactionsUseCase implements UseCase<TransactionsEntity> {
   final TransactionsRepository _transactionsRepository;
 
-  GetTransactionsUseCase({
-    required TransactionsRepository transactionsRepository,
-  }) : _transactionsRepository = transactionsRepository;
+  GetTransactionsUseCase(
+    TransactionsRepository transactionsRepository,
+  ) : _transactionsRepository = transactionsRepository;
 
   @override
   Stream<TransactionsEntity> call() {

@@ -6,9 +6,9 @@ import '../../domain/domain.dart';
 class TransactionsRepositoryImpl implements TransactionsRepository {
   final TransactionsDataSource _transactionsDataSource;
 
-  TransactionsRepositoryImpl({
-    required TransactionsDataSource transactionsDataSource,
-  }) : _transactionsDataSource = transactionsDataSource;
+  TransactionsRepositoryImpl(
+    TransactionsDataSource transactionsDataSource,
+  ) : _transactionsDataSource = transactionsDataSource;
 
   @override
   Stream<void> initDataBase() async* {
@@ -27,8 +27,11 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
       );
 
       yield* Stream.value(
-        TransactionsEntity.fromJson(
-          {'transactions': transactions},
+        TransactionsEntity(
+          transactions: List.generate(
+            transactions.length,
+            (i) => Transaction.fromMap(transactions[i]),
+          ).toList(),
         ),
       );
     } catch (error) {
@@ -42,8 +45,11 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
       final transactions = await _transactionsDataSource.deleteTransactions(id);
 
       yield* Stream.value(
-        TransactionsEntity.fromJson(
-          {'transactions': transactions},
+        TransactionsEntity(
+          transactions: List.generate(
+            transactions.length,
+            (i) => Transaction.fromMap(transactions[i]),
+          ).toList(),
         ),
       );
     } catch (error) {
@@ -57,8 +63,11 @@ class TransactionsRepositoryImpl implements TransactionsRepository {
       final transactions = await _transactionsDataSource.getTransactions();
 
       yield* Stream.value(
-        TransactionsEntity.fromJson(
-          {'transactions': transactions},
+        TransactionsEntity(
+          transactions: List.generate(
+            transactions.length,
+            (i) => Transaction.fromMap(transactions[i]),
+          ).toList(),
         ),
       );
     } catch (error) {

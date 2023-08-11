@@ -20,9 +20,9 @@ class TransactionsDataSourceImpl implements TransactionsDataSource {
   Future<void> initDataBase() async {
     _db = await openDatabase(
       join(await getDatabasesPath(), 'transactions_database.db'),
-      onCreate: (db, version) {
-        return db.execute(
-          'CREATE TABLE $_database(id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, sum TEXT, commission TEXT, type TEXT)',
+      onCreate: (db, version) async {
+        return await db.execute(
+          'CREATE TABLE $_database(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, date TEXT, sum TEXT, commission TEXT, type TEXT)',
         );
       },
       version: 1,
@@ -31,7 +31,7 @@ class TransactionsDataSourceImpl implements TransactionsDataSource {
 
   @override
   Future<List<Map<String, dynamic>>> getTransactions() async {
-    return await _db.query(_database);
+    return await _db.rawQuery('SELECT * FROM "$_database"');
   }
 
   @override

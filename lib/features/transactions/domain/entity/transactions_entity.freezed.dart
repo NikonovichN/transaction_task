@@ -14,15 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TransactionsEntity _$TransactionsEntityFromJson(Map<String, dynamic> json) {
-  return _TransactionsEntity.fromJson(json);
-}
-
 /// @nodoc
 mixin _$TransactionsEntity {
   List<Transaction> get transactions => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TransactionsEntityCopyWith<TransactionsEntity> get copyWith =>
       throw _privateConstructorUsedError;
@@ -95,15 +90,10 @@ class __$$_TransactionsEntityCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_TransactionsEntity
-    with DiagnosticableTreeMixin
-    implements _TransactionsEntity {
+
+class _$_TransactionsEntity implements _TransactionsEntity {
   const _$_TransactionsEntity({required final List<Transaction> transactions})
       : _transactions = transactions;
-
-  factory _$_TransactionsEntity.fromJson(Map<String, dynamic> json) =>
-      _$$_TransactionsEntityFromJson(json);
 
   final List<Transaction> _transactions;
   @override
@@ -114,16 +104,8 @@ class _$_TransactionsEntity
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'TransactionsEntity(transactions: $transactions)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'TransactionsEntity'))
-      ..add(DiagnosticsProperty('transactions', transactions));
   }
 
   @override
@@ -135,7 +117,6 @@ class _$_TransactionsEntity
                 .equals(other._transactions, _transactions));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_transactions));
@@ -146,21 +127,11 @@ class _$_TransactionsEntity
   _$$_TransactionsEntityCopyWith<_$_TransactionsEntity> get copyWith =>
       __$$_TransactionsEntityCopyWithImpl<_$_TransactionsEntity>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_TransactionsEntityToJson(
-      this,
-    );
-  }
 }
 
 abstract class _TransactionsEntity implements TransactionsEntity {
   const factory _TransactionsEntity(
       {required final List<Transaction> transactions}) = _$_TransactionsEntity;
-
-  factory _TransactionsEntity.fromJson(Map<String, dynamic> json) =
-      _$_TransactionsEntity.fromJson;
 
   @override
   List<Transaction> get transactions;

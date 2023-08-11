@@ -6,9 +6,9 @@ class AddTransactionUseCase
     implements ObservableUseCase<TransactionsEntity, Transaction> {
   final TransactionsRepository _transactionsRepository;
 
-  AddTransactionUseCase({
-    required TransactionsRepository transactionsRepository,
-  }) : _transactionsRepository = transactionsRepository;
+  AddTransactionUseCase(
+    TransactionsRepository transactionsRepository,
+  ) : _transactionsRepository = transactionsRepository;
 
   @override
   Stream<TransactionsEntity> call(Transaction transaction) {

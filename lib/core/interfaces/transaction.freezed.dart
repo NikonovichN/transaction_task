@@ -16,11 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Transaction {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   double get sum => throw _privateConstructorUsedError;
   double get commission => throw _privateConstructorUsedError;
-  TypeTransaction get type => throw _privateConstructorUsedError;
+  TransactionType get type => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TransactionCopyWith<Transaction> get copyWith =>
@@ -34,11 +34,11 @@ abstract class $TransactionCopyWith<$Res> {
       _$TransactionCopyWithImpl<$Res, Transaction>;
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String date,
       double sum,
       double commission,
-      TypeTransaction type});
+      TransactionType type});
 }
 
 /// @nodoc
@@ -54,17 +54,17 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? date = null,
     Object? sum = null,
     Object? commission = null,
     Object? type = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,7 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as TypeTransaction,
+              as TransactionType,
     ) as $Val);
   }
 }
@@ -94,11 +94,11 @@ abstract class _$$_TransactionCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String date,
       double sum,
       double commission,
-      TypeTransaction type});
+      TransactionType type});
 }
 
 /// @nodoc
@@ -112,17 +112,17 @@ class __$$_TransactionCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? date = null,
     Object? sum = null,
     Object? commission = null,
     Object? type = null,
   }) {
     return _then(_$_Transaction(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -138,23 +138,24 @@ class __$$_TransactionCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as TypeTransaction,
+              as TransactionType,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Transaction implements _Transaction {
+class _$_Transaction extends _Transaction {
   const _$_Transaction(
-      {required this.id,
+      {this.id,
       required this.date,
       required this.sum,
       required this.commission,
-      required this.type});
+      required this.type})
+      : super._();
 
   @override
-  final int id;
+  final int? id;
   @override
   final String date;
   @override
@@ -162,7 +163,7 @@ class _$_Transaction implements _Transaction {
   @override
   final double commission;
   @override
-  final TypeTransaction type;
+  final TransactionType type;
 
   @override
   String toString() {
@@ -192,16 +193,17 @@ class _$_Transaction implements _Transaction {
       __$$_TransactionCopyWithImpl<_$_Transaction>(this, _$identity);
 }
 
-abstract class _Transaction implements Transaction {
+abstract class _Transaction extends Transaction {
   const factory _Transaction(
-      {required final int id,
+      {final int? id,
       required final String date,
       required final double sum,
       required final double commission,
-      required final TypeTransaction type}) = _$_Transaction;
+      required final TransactionType type}) = _$_Transaction;
+  const _Transaction._() : super._();
 
   @override
-  int get id;
+  int? get id;
   @override
   String get date;
   @override
@@ -209,7 +211,7 @@ abstract class _Transaction implements Transaction {
   @override
   double get commission;
   @override
-  TypeTransaction get type;
+  TransactionType get type;
   @override
   @JsonKey(ignore: true)
   _$$_TransactionCopyWith<_$_Transaction> get copyWith =>
