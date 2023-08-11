@@ -29,38 +29,40 @@ class LoginScreen extends StatelessWidget {
       ),
       child: Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: ListView(
+            padding: const EdgeInsets.all(30),
+            shrinkWrap: true,
             children: [
-              const Text(
-                'Login Screen',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.blueAccent,
-                ),
-              ),
-              const SizedBox(height: 64),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 32),
+              const SizedBox(height: 30),
+              const Center(
                 child: Text(
-                  'For login is using fake API. Please use this link to find username and password.',
+                  'Login Screen',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.blueAccent,
+                  ),
                 ),
               ),
-              ElevatedButton(
-                onPressed: _launchUrl,
-                child: const Text('Open users'),
+              const SizedBox(height: 64),
+              const Text(
+                'For login is using fake API. Please use this link to find username and password.',
               ),
-              const Text('OR'),
-              ElevatedButton(
-                onPressed: _setClipBoard,
-                child: const Text('Copy link (to clipboard)'),
+              Center(
+                child: ElevatedButton(
+                  onPressed: _launchUrl,
+                  child: const Text('Open users'),
+                ),
+              ),
+              const Center(child: Text('OR')),
+              Center(
+                child: ElevatedButton(
+                  onPressed: _setClipBoard,
+                  child: const Text('Copy link (to clipboard)'),
+                ),
               ),
               const SizedBox(height: 64),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: LoginForm(),
-              )
+              LoginForm(),
             ],
           ),
         ),

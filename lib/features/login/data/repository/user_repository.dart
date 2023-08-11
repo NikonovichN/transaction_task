@@ -19,9 +19,7 @@ class UserRepositoryImpl implements UserRepository {
         throw Exception('${response.statusCode.toString()} ${response.body}');
       }
 
-      yield* Stream.value(
-        const UserEntity(loggedIn: true),
-      );
+      yield* Stream.value(const UserEntity());
     } catch (error) {
       yield* Stream.error(error);
     }

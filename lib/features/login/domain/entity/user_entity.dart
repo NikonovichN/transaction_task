@@ -4,7 +4,5 @@ part 'user_entity.freezed.dart';
 
 @freezed
 class UserEntity with _$UserEntity {
-  const factory UserEntity({
-    required bool loggedIn,
-  }) = _UserEntity;
+  const factory UserEntity() = _UserEntity;
 }

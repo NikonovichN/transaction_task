@@ -15,21 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UserEntity {
-  bool get loggedIn => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $UserEntityCopyWith<UserEntity> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+mixin _$UserEntity {}
 
 /// @nodoc
 abstract class $UserEntityCopyWith<$Res> {
   factory $UserEntityCopyWith(
           UserEntity value, $Res Function(UserEntity) then) =
       _$UserEntityCopyWithImpl<$Res, UserEntity>;
-  @useResult
-  $Res call({bool loggedIn});
 }
 
 /// @nodoc
@@ -41,30 +33,13 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? loggedIn = null,
-  }) {
-    return _then(_value.copyWith(
-      loggedIn: null == loggedIn
-          ? _value.loggedIn
-          : loggedIn // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_UserEntityCopyWith<$Res>
-    implements $UserEntityCopyWith<$Res> {
+abstract class _$$_UserEntityCopyWith<$Res> {
   factory _$$_UserEntityCopyWith(
           _$_UserEntity value, $Res Function(_$_UserEntity) then) =
       __$$_UserEntityCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool loggedIn});
 }
 
 /// @nodoc
@@ -74,60 +49,28 @@ class __$$_UserEntityCopyWithImpl<$Res>
   __$$_UserEntityCopyWithImpl(
       _$_UserEntity _value, $Res Function(_$_UserEntity) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? loggedIn = null,
-  }) {
-    return _then(_$_UserEntity(
-      loggedIn: null == loggedIn
-          ? _value.loggedIn
-          : loggedIn // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_UserEntity implements _UserEntity {
-  const _$_UserEntity({required this.loggedIn});
-
-  @override
-  final bool loggedIn;
+  const _$_UserEntity();
 
   @override
   String toString() {
-    return 'UserEntity(loggedIn: $loggedIn)';
+    return 'UserEntity()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_UserEntity &&
-            (identical(other.loggedIn, loggedIn) ||
-                other.loggedIn == loggedIn));
+        (other.runtimeType == runtimeType && other is _$_UserEntity);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loggedIn);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>
-      __$$_UserEntityCopyWithImpl<_$_UserEntity>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 }
 
 abstract class _UserEntity implements UserEntity {
-  const factory _UserEntity({required final bool loggedIn}) = _$_UserEntity;
-
-  @override
-  bool get loggedIn;
-  @override
-  @JsonKey(ignore: true)
-  _$$_UserEntityCopyWith<_$_UserEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _UserEntity() = _$_UserEntity;
 }

@@ -41,8 +41,11 @@ dependencies:
   http: ^1.1.0
   freezed_annotation: ^2.4.1
   url_launcher: ^6.1.12
+  sqflite: ^2.3.0
+  path: ^1.8.3
 
 dev_dependencies:
+  json_serializable:
   flutter_test:
     sdk: flutter
 
