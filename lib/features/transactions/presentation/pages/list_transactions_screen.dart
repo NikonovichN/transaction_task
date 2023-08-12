@@ -38,7 +38,7 @@ class ListTransactionsScreen extends StatelessWidget {
                 ),
                 Tab(
                   icon: Icon(Icons.pie_chart),
-                  text: 'Visualisation',
+                  text: 'Visualization',
                 ),
               ],
             ),
@@ -54,7 +54,7 @@ class ListTransactionsScreen extends StatelessWidget {
           // investigate issue
           floatingActionButton: Builder(
             builder: (context) {
-              final blocTransactionCallBak =
+              final blocTransactionCallBack =
                   context.read<TransactionsBloc>().add;
 
               return FloatingActionButton(
@@ -63,7 +63,7 @@ class ListTransactionsScreen extends StatelessWidget {
                   context: context,
                   builder: (context) => Dialog(
                     child: AddTransactionDialog(
-                      (event) => blocTransactionCallBak(event),
+                      (event) => blocTransactionCallBack(event),
                     ),
                   ),
                 ),

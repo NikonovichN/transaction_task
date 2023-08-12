@@ -19,6 +19,8 @@ class TransactionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,6 +29,8 @@ class TransactionCard extends StatelessWidget {
               Text('#  ${transaction.id}'),
             ],
           ),
+          const SizedBox(height: 4),
+          Text('Date: ${transaction.date}'),
           const SizedBox(height: 10),
           Text('Transaction amount: ${transaction.sum} \$'),
           Text('Commission: ${transaction.commission} \$'),
@@ -37,11 +41,14 @@ class TransactionCard extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          ElevatedButton(
-            onPressed: () => context.read<TransactionsBloc>().add(
-                  TransactionsEvent.deleteTransaction(id: transaction.id!),
-                ),
-            child: const Text('Cancel'),
+          const SizedBox(height: 10),
+          Center(
+            child: ElevatedButton(
+              onPressed: () => context.read<TransactionsBloc>().add(
+                    TransactionsEvent.deleteTransaction(id: transaction.id!),
+                  ),
+              child: const Text('Cancel'),
+            ),
           )
         ],
       ),

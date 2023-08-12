@@ -111,8 +111,8 @@ class _AddTransactionDialogState extends State<AddTransactionDialog> {
                 },
               ),
               TextButton(
+                onPressed: context.pop,
                 child: const Text('Cancel'),
-                onPressed: () => context.pop(),
               )
             ],
           )
