@@ -2,20 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it_mixin/get_it_mixin.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../core/api/api.dart';
 import '../widgets/login_form.dart';
 import '../../data/data.dart';
 import '../bloc/user_bloc.dart';
 import '../../domain/use_case/login_use_case.dart';
 
-class LoginScreen extends StatelessWidget {
-  // TODO: should be placed in somewhere secret place
-  static const _fakeApi = 'dummyjson.com';
-  static const _userPath = 'users';
-  static const _fakeUsersURL = 'https://$_fakeApi/$_userPath';
-
-  const LoginScreen({super.key});
+class LoginScreen extends StatelessWidget with GetItMixin {
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +20,7 @@ class LoginScreen extends StatelessWidget {
       create: (context) => UserBloc(
         logInUseCase: LogInUseCase(
           repository: UserRepositoryImpl(
-            loginDataSource: LoginDataSourceImpl(),
+            loginDataSource: LoginDataSourceImpl(userApi: get<UserApi>()),
           ),
         ),
       ),
@@ -46,8 +43,9 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 64),
               const Text(
-                'For login is using fake API. Please use this link to find username and password.',
+                'A fake API is used to log in. Please use this link to find username and password.',
               ),
+              const SizedBox(height: 10),
               Center(
                 child: ElevatedButton(
                   onPressed: _launchUrl,
@@ -62,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 64),
-              LoginForm(),
+              const LoginForm(),
             ],
           ),
         ),
@@ -71,10 +69,10 @@ class LoginScreen extends StatelessWidget {
   }
 
   Future<void> _launchUrl() async {
-    await launchUrl(Uri.parse(_fakeUsersURL));
+    await launchUrl(Uri.parse(get<UserApi>().fakeUsersURL));
   }
 
   Future<void> _setClipBoard() async {
-    await Clipboard.setData(const ClipboardData(text: _fakeUsersURL));
+    await Clipboard.setData(ClipboardData(text: get<UserApi>().fakeUsersURL));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 
+import '../../../../core/core.dart';
 import '../../domain/use_case/login_use_case.dart';
 
 abstract class LoginDataSource {
@@ -7,13 +8,13 @@ abstract class LoginDataSource {
 }
 
 class LoginDataSourceImpl implements LoginDataSource {
-  // TODO: should be placed in somewhere secret place
-  static const _api = 'dummyjson.com';
-  static const _path = 'auth/login';
+  final UserApi _userApi;
+
+  LoginDataSourceImpl({required UserApi userApi}) : _userApi = userApi;
 
   @override
   Future<http.Response> login(LoginParams params) {
-    return http.post(Uri.https(_api, _path), body: {
+    return http.post(Uri.https(_userApi.fakeApi, _userApi.loginPath), body: {
       'username': params.login,
       'password': params.password,
     });
