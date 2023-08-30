@@ -623,21 +623,25 @@ mixin _$TransactionsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Transaction> transactions) dataState,
+    required TResult Function(
+            List<Transaction> transactions, PieChartsState pieCharts)
+        dataState,
     required TResult Function(String errorMessage) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Transaction> transactions)? dataState,
+    TResult? Function(List<Transaction> transactions, PieChartsState pieCharts)?
+        dataState,
     TResult? Function(String errorMessage)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Transaction> transactions)? dataState,
+    TResult Function(List<Transaction> transactions, PieChartsState pieCharts)?
+        dataState,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) =>
@@ -722,7 +726,9 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Transaction> transactions) dataState,
+    required TResult Function(
+            List<Transaction> transactions, PieChartsState pieCharts)
+        dataState,
     required TResult Function(String errorMessage) error,
   }) {
     return initial();
@@ -732,7 +738,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Transaction> transactions)? dataState,
+    TResult? Function(List<Transaction> transactions, PieChartsState pieCharts)?
+        dataState,
     TResult? Function(String errorMessage)? error,
   }) {
     return initial?.call();
@@ -742,7 +749,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Transaction> transactions)? dataState,
+    TResult Function(List<Transaction> transactions, PieChartsState pieCharts)?
+        dataState,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -797,7 +805,9 @@ abstract class _$$_DataStateCopyWith<$Res> {
           _$_DataState value, $Res Function(_$_DataState) then) =
       __$$_DataStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Transaction> transactions});
+  $Res call({List<Transaction> transactions, PieChartsState pieCharts});
+
+  $PieChartsStateCopyWith<$Res> get pieCharts;
 }
 
 /// @nodoc
@@ -812,20 +822,34 @@ class __$$_DataStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? transactions = null,
+    Object? pieCharts = null,
   }) {
     return _then(_$_DataState(
       transactions: null == transactions
           ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
               as List<Transaction>,
+      pieCharts: null == pieCharts
+          ? _value.pieCharts
+          : pieCharts // ignore: cast_nullable_to_non_nullable
+              as PieChartsState,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PieChartsStateCopyWith<$Res> get pieCharts {
+    return $PieChartsStateCopyWith<$Res>(_value.pieCharts, (value) {
+      return _then(_value.copyWith(pieCharts: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$_DataState implements _DataState {
-  const _$_DataState({required final List<Transaction> transactions})
+  const _$_DataState(
+      {required final List<Transaction> transactions, required this.pieCharts})
       : _transactions = transactions;
 
   final List<Transaction> _transactions;
@@ -837,8 +861,11 @@ class _$_DataState implements _DataState {
   }
 
   @override
+  final PieChartsState pieCharts;
+
+  @override
   String toString() {
-    return 'TransactionsState.dataState(transactions: $transactions)';
+    return 'TransactionsState.dataState(transactions: $transactions, pieCharts: $pieCharts)';
   }
 
   @override
@@ -847,12 +874,14 @@ class _$_DataState implements _DataState {
         (other.runtimeType == runtimeType &&
             other is _$_DataState &&
             const DeepCollectionEquality()
-                .equals(other._transactions, _transactions));
+                .equals(other._transactions, _transactions) &&
+            (identical(other.pieCharts, pieCharts) ||
+                other.pieCharts == pieCharts));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_transactions));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_transactions), pieCharts);
 
   @JsonKey(ignore: true)
   @override
@@ -864,32 +893,36 @@ class _$_DataState implements _DataState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Transaction> transactions) dataState,
+    required TResult Function(
+            List<Transaction> transactions, PieChartsState pieCharts)
+        dataState,
     required TResult Function(String errorMessage) error,
   }) {
-    return dataState(transactions);
+    return dataState(transactions, pieCharts);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Transaction> transactions)? dataState,
+    TResult? Function(List<Transaction> transactions, PieChartsState pieCharts)?
+        dataState,
     TResult? Function(String errorMessage)? error,
   }) {
-    return dataState?.call(transactions);
+    return dataState?.call(transactions, pieCharts);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Transaction> transactions)? dataState,
+    TResult Function(List<Transaction> transactions, PieChartsState pieCharts)?
+        dataState,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
     if (dataState != null) {
-      return dataState(transactions);
+      return dataState(transactions, pieCharts);
     }
     return orElse();
   }
@@ -930,10 +963,12 @@ class _$_DataState implements _DataState {
 }
 
 abstract class _DataState implements TransactionsState {
-  const factory _DataState({required final List<Transaction> transactions}) =
-      _$_DataState;
+  const factory _DataState(
+      {required final List<Transaction> transactions,
+      required final PieChartsState pieCharts}) = _$_DataState;
 
   List<Transaction> get transactions;
+  PieChartsState get pieCharts;
   @JsonKey(ignore: true)
   _$$_DataStateCopyWith<_$_DataState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1003,7 +1038,9 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<Transaction> transactions) dataState,
+    required TResult Function(
+            List<Transaction> transactions, PieChartsState pieCharts)
+        dataState,
     required TResult Function(String errorMessage) error,
   }) {
     return error(errorMessage);
@@ -1013,7 +1050,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<Transaction> transactions)? dataState,
+    TResult? Function(List<Transaction> transactions, PieChartsState pieCharts)?
+        dataState,
     TResult? Function(String errorMessage)? error,
   }) {
     return error?.call(errorMessage);
@@ -1023,7 +1061,8 @@ class _$_Error implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<Transaction> transactions)? dataState,
+    TResult Function(List<Transaction> transactions, PieChartsState pieCharts)?
+        dataState,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -1074,5 +1113,358 @@ abstract class _Error implements TransactionsState {
   String get errorMessage;
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$PieChartsState {
+  PieDetails get refill => throw _privateConstructorUsedError;
+  PieDetails get transfer => throw _privateConstructorUsedError;
+  PieDetails get withdraw => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PieChartsStateCopyWith<PieChartsState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PieChartsStateCopyWith<$Res> {
+  factory $PieChartsStateCopyWith(
+          PieChartsState value, $Res Function(PieChartsState) then) =
+      _$PieChartsStateCopyWithImpl<$Res, PieChartsState>;
+  @useResult
+  $Res call({PieDetails refill, PieDetails transfer, PieDetails withdraw});
+
+  $PieDetailsCopyWith<$Res> get refill;
+  $PieDetailsCopyWith<$Res> get transfer;
+  $PieDetailsCopyWith<$Res> get withdraw;
+}
+
+/// @nodoc
+class _$PieChartsStateCopyWithImpl<$Res, $Val extends PieChartsState>
+    implements $PieChartsStateCopyWith<$Res> {
+  _$PieChartsStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? refill = null,
+    Object? transfer = null,
+    Object? withdraw = null,
+  }) {
+    return _then(_value.copyWith(
+      refill: null == refill
+          ? _value.refill
+          : refill // ignore: cast_nullable_to_non_nullable
+              as PieDetails,
+      transfer: null == transfer
+          ? _value.transfer
+          : transfer // ignore: cast_nullable_to_non_nullable
+              as PieDetails,
+      withdraw: null == withdraw
+          ? _value.withdraw
+          : withdraw // ignore: cast_nullable_to_non_nullable
+              as PieDetails,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PieDetailsCopyWith<$Res> get refill {
+    return $PieDetailsCopyWith<$Res>(_value.refill, (value) {
+      return _then(_value.copyWith(refill: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PieDetailsCopyWith<$Res> get transfer {
+    return $PieDetailsCopyWith<$Res>(_value.transfer, (value) {
+      return _then(_value.copyWith(transfer: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PieDetailsCopyWith<$Res> get withdraw {
+    return $PieDetailsCopyWith<$Res>(_value.withdraw, (value) {
+      return _then(_value.copyWith(withdraw: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_PieChartsStateCopyWith<$Res>
+    implements $PieChartsStateCopyWith<$Res> {
+  factory _$$_PieChartsStateCopyWith(
+          _$_PieChartsState value, $Res Function(_$_PieChartsState) then) =
+      __$$_PieChartsStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({PieDetails refill, PieDetails transfer, PieDetails withdraw});
+
+  @override
+  $PieDetailsCopyWith<$Res> get refill;
+  @override
+  $PieDetailsCopyWith<$Res> get transfer;
+  @override
+  $PieDetailsCopyWith<$Res> get withdraw;
+}
+
+/// @nodoc
+class __$$_PieChartsStateCopyWithImpl<$Res>
+    extends _$PieChartsStateCopyWithImpl<$Res, _$_PieChartsState>
+    implements _$$_PieChartsStateCopyWith<$Res> {
+  __$$_PieChartsStateCopyWithImpl(
+      _$_PieChartsState _value, $Res Function(_$_PieChartsState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? refill = null,
+    Object? transfer = null,
+    Object? withdraw = null,
+  }) {
+    return _then(_$_PieChartsState(
+      refill: null == refill
+          ? _value.refill
+          : refill // ignore: cast_nullable_to_non_nullable
+              as PieDetails,
+      transfer: null == transfer
+          ? _value.transfer
+          : transfer // ignore: cast_nullable_to_non_nullable
+              as PieDetails,
+      withdraw: null == withdraw
+          ? _value.withdraw
+          : withdraw // ignore: cast_nullable_to_non_nullable
+              as PieDetails,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_PieChartsState implements _PieChartsState {
+  const _$_PieChartsState(
+      {required this.refill, required this.transfer, required this.withdraw});
+
+  @override
+  final PieDetails refill;
+  @override
+  final PieDetails transfer;
+  @override
+  final PieDetails withdraw;
+
+  @override
+  String toString() {
+    return 'PieChartsState(refill: $refill, transfer: $transfer, withdraw: $withdraw)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PieChartsState &&
+            (identical(other.refill, refill) || other.refill == refill) &&
+            (identical(other.transfer, transfer) ||
+                other.transfer == transfer) &&
+            (identical(other.withdraw, withdraw) ||
+                other.withdraw == withdraw));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, refill, transfer, withdraw);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PieChartsStateCopyWith<_$_PieChartsState> get copyWith =>
+      __$$_PieChartsStateCopyWithImpl<_$_PieChartsState>(this, _$identity);
+}
+
+abstract class _PieChartsState implements PieChartsState {
+  const factory _PieChartsState(
+      {required final PieDetails refill,
+      required final PieDetails transfer,
+      required final PieDetails withdraw}) = _$_PieChartsState;
+
+  @override
+  PieDetails get refill;
+  @override
+  PieDetails get transfer;
+  @override
+  PieDetails get withdraw;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PieChartsStateCopyWith<_$_PieChartsState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$PieDetails {
+  String get title => throw _privateConstructorUsedError;
+  List<double> get values => throw _privateConstructorUsedError;
+  double get total => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PieDetailsCopyWith<PieDetails> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PieDetailsCopyWith<$Res> {
+  factory $PieDetailsCopyWith(
+          PieDetails value, $Res Function(PieDetails) then) =
+      _$PieDetailsCopyWithImpl<$Res, PieDetails>;
+  @useResult
+  $Res call({String title, List<double> values, double total});
+}
+
+/// @nodoc
+class _$PieDetailsCopyWithImpl<$Res, $Val extends PieDetails>
+    implements $PieDetailsCopyWith<$Res> {
+  _$PieDetailsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? values = null,
+    Object? total = null,
+  }) {
+    return _then(_value.copyWith(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      values: null == values
+          ? _value.values
+          : values // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_PieDetailsCopyWith<$Res>
+    implements $PieDetailsCopyWith<$Res> {
+  factory _$$_PieDetailsCopyWith(
+          _$_PieDetails value, $Res Function(_$_PieDetails) then) =
+      __$$_PieDetailsCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String title, List<double> values, double total});
+}
+
+/// @nodoc
+class __$$_PieDetailsCopyWithImpl<$Res>
+    extends _$PieDetailsCopyWithImpl<$Res, _$_PieDetails>
+    implements _$$_PieDetailsCopyWith<$Res> {
+  __$$_PieDetailsCopyWithImpl(
+      _$_PieDetails _value, $Res Function(_$_PieDetails) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? values = null,
+    Object? total = null,
+  }) {
+    return _then(_$_PieDetails(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      values: null == values
+          ? _value._values
+          : values // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_PieDetails implements _PieDetails {
+  const _$_PieDetails(
+      {required this.title,
+      required final List<double> values,
+      required this.total})
+      : _values = values;
+
+  @override
+  final String title;
+  final List<double> _values;
+  @override
+  List<double> get values {
+    if (_values is EqualUnmodifiableListView) return _values;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_values);
+  }
+
+  @override
+  final double total;
+
+  @override
+  String toString() {
+    return 'PieDetails(title: $title, values: $values, total: $total)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PieDetails &&
+            (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality().equals(other._values, _values) &&
+            (identical(other.total, total) || other.total == total));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, title, const DeepCollectionEquality().hash(_values), total);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PieDetailsCopyWith<_$_PieDetails> get copyWith =>
+      __$$_PieDetailsCopyWithImpl<_$_PieDetails>(this, _$identity);
+}
+
+abstract class _PieDetails implements PieDetails {
+  const factory _PieDetails(
+      {required final String title,
+      required final List<double> values,
+      required final double total}) = _$_PieDetails;
+
+  @override
+  String get title;
+  @override
+  List<double> get values;
+  @override
+  double get total;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PieDetailsCopyWith<_$_PieDetails> get copyWith =>
       throw _privateConstructorUsedError;
 }

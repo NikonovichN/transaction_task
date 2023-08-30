@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:transaction_task/features/transactions/presentation/widgets/add_transaction_dialog.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/core.dart';
 import '../../data/data.dart';
 import '../../domain/domain.dart';
 import '../bloc/transactions_bloc.dart';
@@ -49,23 +50,13 @@ class ListTransactionsScreen extends StatelessWidget {
               DiagramTransactions(),
             ],
           ),
-          // TODO: for some reason showDialog doesn't provide context with Bloc even if use Builder widget
-          // that's why callbacks are used here.
-          // investigate issue
           floatingActionButton: Builder(
             builder: (context) {
-              final blocTransactionCallBack =
-                  context.read<TransactionsBloc>().add;
-
               return FloatingActionButton(
                 child: const Icon(Icons.add),
-                onPressed: () => showDialog(
-                  context: context,
-                  builder: (context) => Dialog(
-                    child: AddTransactionDialog(
-                      (event) => blocTransactionCallBack(event),
-                    ),
-                  ),
+                onPressed: () => context.push(
+                  '/$addTransactionScreen',
+                  extra: context.read<TransactionsBloc>(),
                 ),
               );
             },

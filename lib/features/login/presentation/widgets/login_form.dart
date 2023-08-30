@@ -7,9 +7,14 @@ import '../bloc/user_bloc.dart';
 import '../../../../core/core.dart';
 import '../../domain/use_case/login_use_case.dart';
 
-class LoginForm extends StatelessWidget {
-  LoginForm({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
 
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   static const _loginHint = 'Enter username';
   static const _passwordHint = 'Enter password';
 
@@ -17,6 +22,13 @@ class LoginForm extends StatelessWidget {
 
   final _loginController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _loginController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +58,12 @@ class LoginForm extends StatelessWidget {
               errorLogIn: (state) => ScaffoldMessenger.of(context).showSnackBar(
                 errorSnackBar(_loginError(state)),
               ),
-              // TODO: would be better to move navigation to router higher
-              // or maybe create service with login/token
               successLogIn: () => context.go('/$listTransactionsScreen'),
             ),
             builder: (context, state) {
               return Center(
                 child: state.maybeMap(
                   orElse: () => ElevatedButton(
-                    // TODO: add validation
                     onPressed: () => context.read<UserBloc>().add(
                           UserEvent.logIn(
                             LoginParams(
